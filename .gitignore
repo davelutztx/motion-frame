@@ -1,0 +1,12 @@
+node_modules
+vendor
+dist/
+test-results/
+.env*
+*.log
+*.jpg
+*.jpeg
+*.mp4
+*.mov
+*.zip
+*.exe

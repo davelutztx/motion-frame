@@ -1,0 +1,54 @@
+{
+  "name": "motion-frame",
+  "version": "1.1.0",
+  "description": "Find the perfect frame in a motion photo.",
+  "productName": "Motion Frame",
+  "author": "Dave Lutz",
+  "private": true,
+  "license": "UNLICENSED",
+  "main": "src/main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test test/*.test.cjs",
+    "test:ui": "xvfb-run -a node test/ui.cjs",
+    "icons": "node scripts/generate-icons.cjs",
+    "build:win": "npm run icons && node scripts/prepare-windows.cjs && node --require ./scripts/nsis-linux.cjs ./node_modules/electron-builder/cli.js --win nsis zip --x64",
+    "build:linux": "electron-builder --linux dir --x64"
+  },
+  "devDependencies": {
+    "electron": "44.7.0",
+    "electron-builder": "26.15.3",
+    "ffmpeg-static": "5.3.0",
+    "playwright": "1.64.0",
+    "@resvg/resvg-js": "2.6.2",
+    "resedit": "1.7.2"
+  },
+  "build": {
+    "appId": "com.davelutz.motionframe",
+    "asar": true,
+    "afterPack": "scripts/windows-resources.cjs",
+    "directories": { "output": "dist" },
+    "files": ["src/**/*", "package.json", "README.md", "THIRD-PARTY-NOTICES.md"],
+    "extraFiles": ["README.md", "THIRD-PARTY-NOTICES.md"],
+    "win": {
+      "extraResources": [{ "from": "vendor/win", "to": "bin" }],
+      "icon": "src/assets/icon.ico",
+      "target": [{ "target": "nsis", "arch": ["x64"] }, { "target": "zip", "arch": ["x64"] }],
+      "signAndEditExecutable": false,
+      "artifactName": "Motion-Frame-${version}-Windows-x64.zip"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Motion Frame",
+      "runAfterFinish": true,
+      "deleteAppDataOnUninstall": false,
+      "installerIcon": "src/assets/icon.ico",
+      "uninstallerIcon": "src/assets/icon.ico",
+      "artifactName": "Motion-Frame-Setup-${version}-Windows-x64.exe"
+    },
+    "linux": { "target": "dir", "category": "Graphics", "extraResources": [{ "from": "vendor/linux", "to": "bin" }] }
+  }
+}

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' motion: data:; connect-src motion:; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Motion Frame</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><img class="brand-mark" src="assets/icon.svg" width="36" height="36" alt=""><strong>Motion Frame</strong><span class="brand-divider"></span><span class="tagline">A moment worth keeping.</span></div>
+    <button id="open" class="button secondary"><span aria-hidden="true">＋</span> Open photo <kbd>Ctrl O</kbd></button>
+  </header>
+
+  <main>
+    <section id="empty" class="empty">
+      <div class="intro"><span class="eyebrow">YOUR PHOTO. EVERY MOMENT.</span><h1>The perfect frame<br>is in there.</h1><p>Drop in a motion photo. Find the moment you love.<br>Keep it as a photo of its own.</p></div>
+      <button id="dropzone" class="dropzone" aria-label="Choose a motion photo or drag one here">
+        <span class="photo-stack" aria-hidden="true"><span></span><span></span><span><i>▶</i></span></span>
+        <strong>Drop your motion photo here</strong><span>or click to browse your files</span><small>Samsung &amp; Google JPG Motion Photos · MP4 · MOV</small>
+      </button>
+      <div class="local-note"><span aria-hidden="true">◉</span> Just your computer. No uploads. No account.</div>
+    </section>
+
+    <section id="workspace" class="workspace" hidden>
+      <div class="workspace-top"><div class="file-info"><span class="file-dot"></span><h1 id="filename"></h1><span id="kind" class="pill"></span></div><span id="summary" class="muted"></span></div>
+      <div class="editing-area">
+        <div class="viewer-column">
+          <div class="view-tabs" role="group" aria-label="Preview mode"><button id="motion-tab" class="tab active">Motion frames</button><button id="original-tab" class="tab">Original photo</button></div>
+          <div id="viewer" class="viewer" tabindex="0" aria-label="Image preview. Scroll or use arrow keys to change frames."><img id="preview" alt="Selected motion photo frame"><span id="preview-badge" class="preview-badge"></span></div>
+          <div class="transport"><span id="timecode" class="timecode">00:00.000</span><div class="transport-buttons"><button id="previous" class="icon-button" title="Previous frame (Left arrow)" aria-label="Previous frame">‹</button><button id="play" class="play-button" title="Play / pause (Space)" aria-label="Play motion">▶</button><button id="next" class="icon-button" title="Next frame (Right arrow)" aria-label="Next frame">›</button></div><span id="frame-counter" class="frame-counter"></span></div>
+        </div>
+        <aside class="inspector">
+          <span class="eyebrow">THE MOMENT YOU CHOOSE</span>
+          <h2 id="selection-title">Frame 1</h2>
+          <p id="selection-description">A single moment from your motion photo.</p>
+          <dl><div><dt>Image size</dt><dd id="dimensions">—</dd></div><div><dt>Export format</dt><dd>JPG <span class="quality">High quality</span></dd></div><div><dt>Position</dt><dd id="position">—</dd></div></dl>
+          <label class="jump-label" for="jump">Jump to frame</label><div class="jump"><input id="jump" type="number" min="1" step="1" value="1" aria-label="Frame number"><span id="jump-total"></span></div>
+          <button id="save" class="button primary save-button" disabled><span aria-hidden="true">↓</span> Save frame as JPG</button>
+          <p class="export-note">Your original stays untouched.<br>Saved at the motion frame’s full resolution.</p>
+          <div class="shortcut-card"><span>MAKE IT YOUR MOMENT</span><p><kbd>←</kbd> <kbd>→</kbd> Step through frames</p><p><kbd>Space</kbd> Play / pause</p><p><kbd>Ctrl S</kbd> Save selected frame</p><p class="muted">Scroll over the photo to scrub.</p></div>
+        </aside>
+      </div>
+      <div id="timeline" class="timeline"><div class="timeline-label"><span>FRAME STRIP</span><span id="timeline-hint">Scroll to explore · click to select</span></div><input id="scrubber" type="range" min="0" max="0" value="0" step="1" aria-label="Select a motion frame"><div id="filmstrip" class="filmstrip" role="group" aria-label="Available frames"></div></div>
+    </section>
+  </main>
+
+  <div id="notice" class="notice" role="status" aria-live="polite" hidden><span id="notice-text"></span><button id="reveal" hidden>Show in folder ↗</button><button id="dismiss" aria-label="Dismiss message">×</button></div>
+  <footer><span id="footer-status">READY WHEN YOU ARE</span><span>LOCAL BY DESIGN <span class="status-dot"></span></span></footer>
+  <div id="drop-overlay" class="drop-overlay" hidden><div><span aria-hidden="true">↓</span><h2>Drop to find your frame</h2><p>One motion photo at a time</p></div></div>
+  <div id="loading" class="loading" role="status" aria-live="polite" hidden><div class="loading-card"><div class="spinner"></div><h2>Unpacking the moment</h2><p id="loading-progress">Reading your photo…</p><button id="cancel" class="button secondary">Cancel</button></div></div>
+  <script src="renderer.js"></script>
+</body>
+</html>

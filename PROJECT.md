@@ -14,7 +14,7 @@ Private, offline Windows 10/11 x64 Electron app. Drag in a Samsung/Google JPEG M
 
 Version 1.1.0 adds an editable vector icon, Windows executable/product branding, and an NSIS per-user installer. Start-menu and desktop shortcuts use the same icon. Uninstall through Windows Settings; photos and exported images stay untouched. A portable ZIP is also built.
 
-Repository visibility must remain **private**. The owner authorized committing and pushing this version on October 11, 2026. No public release or open-source license is authorized; project license remains UNLICENSED.
+Repository visibility must remain **private**. The owner authorized committing and pushing on October 11, 2026, and subsequently selected MIT for Motion Frame's original code, documentation, and icon artwork. Third-party components retain their own licenses, including GPLv3 for the separately executed FFmpeg binary. Public repository visibility is not authorized.
 
 Private repository: https://github.com/davelutztx/motion-frame . Versioned setup/portable artifacts and SHA256 checksums are attached to private GitHub Releases.
 
@@ -55,7 +55,7 @@ Build output defaults to `dist/`; use `--config.directories.output=<scratch-dire
 - Input limit: 512 MB; decoded-frame limit: 1,800; decoder timeout: two minutes; two FFmpeg threads.
 - Ordinary JPEGs remain viewable. HEIC motion photos and paired Apple Live Photos are unsupported; individual MOV clips work.
 - App and installer are unsigned. Signing certificates and paid services were not purchased.
-- Public distribution would need an owner-selected app license and appropriate corresponding-source delivery for bundled GPL FFmpeg. Keep all third-party notices.
+- The app license is MIT. Redistribution of bundled GPLv3 FFmpeg still requires appropriate corresponding-source delivery and notices; the app's MIT license does not replace those terms.
 
 ## Verification
 

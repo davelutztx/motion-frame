@@ -62,3 +62,9 @@ The editable icon is `src/assets/icon.svg`. `npm run icons` uses resvg to genera
 Set `MOTION_PHOTO_FIXTURE` to the original 107-frame sample JPG to include the real-file decoder integration test. Do not commit personal photos. `npm run test:ui` runs the Electron UI integration test on Linux under Xvfb; it requires the same fixture variable. `MOTION_TEST_TMP` selects a scratch output directory for tests and screenshots.
 
 See [PROJECT.md](PROJECT.md) for architecture, verification results and limitations. Third-party notices are in [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
+
+## License
+
+Motion Frame's original code, documentation, and icon artwork are licensed under the [MIT License](LICENSE), copyright (c) 2026 Dave Lutz. The repository remains private; choosing MIT does not change repository visibility.
+
+Third-party components retain their own licenses. In particular, the separately executed, bundled Windows FFmpeg binary is GPLv3, not MIT. Retain its license and satisfy its corresponding-source requirements when redistributing it; see [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).

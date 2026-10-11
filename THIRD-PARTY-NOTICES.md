@@ -1,6 +1,6 @@
 # Third-party software
 
-Motion Frame is a private application for Dave Lutz. No photographs are included in the distribution.
+Motion Frame's original code, documentation, and icon artwork are MIT licensed, copyright (c) 2026 Dave Lutz; see LICENSE. The MIT license does not relicense any third-party component. No photographs are included in the distribution.
 
 ## Electron
 
@@ -11,11 +11,11 @@ Electron is MIT licensed; Chromium, Node.js, and their dependencies have their o
 
 ## FFmpeg
 
-FFmpeg is executed as a separate, bundled command-line program. Its binary is supplied through ffmpeg-static 5.3.0, binary release b6.1.1. This Windows build is GPL licensed. Its provider's license and build README are included alongside the executable in resources/bin. Please retain those files.
+FFmpeg is executed as a separate, bundled command-line program. Its binary is supplied through ffmpeg-static 5.3.0, binary release b6.1.1. This Windows build is GPLv3 licensed, not MIT. Its provider's license and build README are included alongside the executable as resources/bin/ffmpeg.exe.LICENSE and resources/bin/ffmpeg.exe.README. Please retain those files.
 
 - Binary provider, build scripts and source information: https://github.com/eugeneware/ffmpeg-static/tree/b6.1.1
 - Binary release and related assets: https://github.com/eugeneware/ffmpeg-static/releases/tag/b6.1.1
 - FFmpeg source: https://ffmpeg.org/releases/ffmpeg-6.1.1.tar.xz
 - FFmpeg license information: https://ffmpeg.org/legal.html
 
-Before distributing a modified or public release, preserve the applicable licenses and provide the corresponding sources required by the bundled build's license.
+When redistributing the bundled FFmpeg binary, preserve its notices and provide the corresponding source using a method permitted by GPLv3. This applies to redistribution, not only public GitHub releases. Corresponding source must match the actual binary, including covered libraries, patches, and build scripts; the FFmpeg upstream tarball alone is not necessarily sufficient. The links above identify upstream/provider resources, not a claim that this repository contains a complete corresponding-source bundle. Review that delivery before distributing the installer beyond the owner's private use.

@@ -24,7 +24,7 @@ const { NtExecutable, NtExecutableResource, Data, Resource } = require('resedit'
     assert.equal(bytes.readUInt16LE(pe + 4), 0x8664, `${filename} must be Windows x64`);
   }
   assert.equal(hash(await fs.readFile(path.join(directory, 'resources/bin/ffmpeg.exe'))), hash(await fs.readFile(path.join(root, 'vendor/win/ffmpeg.exe'))));
-  for (const filename of ['README.md', 'THIRD-PARTY-NOTICES.md', 'LICENSE.electron.txt', 'LICENSES.chromium.html', 'resources/bin/ffmpeg.exe.LICENSE', 'resources/bin/ffmpeg.exe.README']) {
+  for (const filename of ['README.md', 'LICENSE', 'THIRD-PARTY-NOTICES.md', 'LICENSE.electron.txt', 'LICENSES.chromium.html', 'resources/bin/ffmpeg.exe.LICENSE', 'resources/bin/ffmpeg.exe.README']) {
     assert.ok((await fs.stat(path.join(directory, filename))).size > 0, `${filename} included`);
   }
   const expectedIcon = Data.IconFile.from(await fs.readFile(path.join(root, 'src/assets/icon.ico')));
@@ -32,6 +32,9 @@ const { NtExecutable, NtExecutableResource, Data, Resource } = require('resedit'
   const pkg = require('../package.json');
   const packaged = JSON.parse(asar.extractFile(archive, 'package.json'));
   assert.equal(packaged.version, pkg.version);
+  assert.equal(packaged.license, 'MIT');
+  assert.equal(hash(asar.extractFile(archive, 'LICENSE')), hash(await fs.readFile(path.join(root, 'LICENSE'))));
+  assert.equal(hash(await fs.readFile(path.join(directory, 'LICENSE'))), hash(await fs.readFile(path.join(root, 'LICENSE'))));
   const resources = NtExecutableResource.from(NtExecutable.from(await fs.readFile(path.join(directory, 'Motion Frame.exe'))));
   const groups = Resource.IconGroupEntry.fromEntries(resources.entries);
   assert.equal(groups.length, 1, 'Electron icons replaced');

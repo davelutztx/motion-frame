@@ -5,7 +5,7 @@
   "productName": "Motion Frame",
   "author": "Dave Lutz",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "main": "src/main.cjs",
   "scripts": {
     "start": "electron .",
@@ -28,8 +28,8 @@
     "asar": true,
     "afterPack": "scripts/windows-resources.cjs",
     "directories": { "output": "dist" },
-    "files": ["src/**/*", "package.json", "README.md", "THIRD-PARTY-NOTICES.md"],
-    "extraFiles": ["README.md", "THIRD-PARTY-NOTICES.md"],
+    "files": ["src/**/*", "package.json", "README.md", "LICENSE", "THIRD-PARTY-NOTICES.md"],
+    "extraFiles": ["README.md", "LICENSE", "THIRD-PARTY-NOTICES.md"],
     "win": {
       "extraResources": [{ "from": "vendor/win", "to": "bin" }],
       "icon": "src/assets/icon.ico",

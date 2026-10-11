@@ -2,6 +2,8 @@
 
 A local, Windows-ready Electron app for finding and saving a frame from a motion photo.
 
+**Download status:** source is public under MIT. Prebuilt Windows downloads are not yet public while matching-source delivery for bundled GPLv3 FFmpeg is completed. Build locally using the Development instructions below. The existing owner-only installer remains available privately.
+
 ## Windows quick start
 
 1. Download **Motion-Frame-Setup-1.1.0-Windows-x64.exe**.
@@ -11,7 +13,7 @@ A local, Windows-ready Electron app for finding and saving a frame from a motion
 5. Browse the thumbnail strip, move the slider, use the arrow keys, or scroll over the preview.
 6. Click **Save frame as JPG**, choose a filename and folder, and save.
 
-The app runs on Windows 10/11 x64. This private build is unsigned, so Windows may show an unrecognized-app prompt. It does not require administrator access.
+The app runs on Windows 10/11 x64. Builds are unsigned, so Windows may show an unrecognized-app prompt. It does not require administrator access.
 
 Uninstall through **Settings → Apps → Installed apps → Motion Frame**. Your source photos and exported JPGs are not removed. Future installers with the same app identity replace the installed version.
 
@@ -65,6 +67,6 @@ See [PROJECT.md](PROJECT.md) for architecture, verification results and limitati
 
 ## License
 
-Motion Frame's original code, documentation, and icon artwork are licensed under the [MIT License](LICENSE), copyright (c) 2026 Dave Lutz. The repository remains private; choosing MIT does not change repository visibility.
+Motion Frame's original code, documentation, and icon artwork are licensed under the [MIT License](LICENSE), copyright (c) 2026 Dave Lutz.
 
 Third-party components retain their own licenses. In particular, the separately executed, bundled Windows FFmpeg binary is GPLv3, not MIT. Retain its license and satisfy its corresponding-source requirements when redistributing it; see [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).

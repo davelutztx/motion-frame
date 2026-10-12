@@ -2,22 +2,26 @@
 
 A local, Windows-ready Electron app for finding and saving a frame from a motion photo.
 
-**Download status:** source is public under MIT. Prebuilt Windows downloads are not yet public while matching-source delivery for bundled GPLv3 FFmpeg is completed. Build locally using the Development instructions below. The existing owner-only installer remains available privately.
+**Source-only release:** no prebuilt installer or portable ZIP is currently available. Run from source using the instructions below.
 
-## Windows quick start
+## Run from source
 
-1. Download **Motion-Frame-Setup-1.1.0-Windows-x64.exe**.
-2. Run it to install for your Windows account. No administrator access, Node.js, FFmpeg installation, or codec pack is needed.
-3. Open **Motion Frame** from the desktop or Start menu (it also opens after installation).
-4. Drag a motion photo into the window, or click **Open photo**.
-5. Browse the thumbnail strip, move the slider, use the arrow keys, or scroll over the preview.
-6. Click **Save frame as JPG**, choose a filename and folder, and save.
+Requires Git, Node.js 22+ and npm. Windows 10/11 x64 is the target platform.
 
-The app runs on Windows 10/11 x64. Builds are unsigned, so Windows may show an unrecognized-app prompt. It does not require administrator access.
+```sh
+git clone https://github.com/davelutztx/motion-frame.git
+cd motion-frame
+npm ci
+npm start
+```
 
-Uninstall through **Settings → Apps → Installed apps → Motion Frame**. Your source photos and exported JPGs are not removed. Future installers with the same app identity replace the installed version.
+The initial dependency installation needs internet access. Once installed, photo processing is entirely local.
 
-Prefer no installer? Download **Motion-Frame-1.1.0-Windows-x64.zip**, choose **Extract All**, and open **Motion Frame.exe**. The portable folder and installed app are separate; installing does not remove an older portable copy.
+### Use the app
+
+1. Drag a motion photo into the window, or click **Open photo**.
+2. Browse the thumbnail strip, move the slider, use the arrow keys, or scroll over the preview.
+3. Click **Save frame as JPG**, choose a filename and folder, and save.
 
 ## Features
 
@@ -28,7 +32,7 @@ Prefer no installer? Download **Motion-Frame-1.1.0-Windows-x64.zip**, choose **E
 - Original still-photo tab; defaults near the capture timestamp when it is present.
 - Saves the selected decoded frame as a high-quality JPEG, at the frame's native resolution and with orientation applied.
 - Input photos are never edited. Frames are cached in a private temporary directory and removed on normal exit.
-- Entirely offline after downloading; no accounts, analytics, network APIs, or photo uploads.
+- Entirely offline after dependency installation; no accounts, analytics, network APIs, or photo uploads.
 
 Motion frames often have a lower resolution than the primary still photo. This app preserves the motion frame's resolution; it does not upscale it. A JPG shared through messaging or edited by another app may have lost its motion video; use the original phone file in that case. HEIC motion photos and Apple's separate HEIC+MOV Live Photo pairs are not currently supported (the MOV can be opened on its own).
 
@@ -46,16 +50,16 @@ Motion frames often have a lower resolution than the primary still photo. This a
 
 ## Development
 
-Requires Node.js 22+ and npm. From the project folder:
+After installing dependencies as described above, run tests or create a local Windows package:
 
 ```sh
-npm ci
-npm start
 npm test
 npm run build:win
 ```
 
 `build:win` regenerates the icons, prepares the Windows FFmpeg binary, and writes a per-user NSIS installer and portable ZIP in `dist/`. Linux cross-builds reuse electron-builder's own unsigned-uninstaller binary reader without Wine; see `scripts/nsis-linux.cjs`. Dependencies and binaries are pinned; the first install/build needs network access. Electron and FFmpeg are bundled in the finished app.
+
+These are locally generated, unsigned packages—not hosted downloads. Public binary releases are on hold until matching-source delivery for bundled GPLv3 FFmpeg is verified; see [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
 
 The editable icon is `src/assets/icon.svg`. `npm run icons` uses resvg to generate its PNG and nine-size Windows ICO. A resedit `afterPack` hook embeds the icon and product/version metadata in the Windows executable without signing it. The same artwork appears in the app header, taskbar, shortcuts, installer, and uninstall entry.
 
